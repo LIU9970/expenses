@@ -1,0 +1,28 @@
+version: "3"
+services:
+  app:
+    container_name: app
+    depends_on:
+      - db
+    links:
+      - db
+    volumes:
+      - ./src/expenses:/go/src/expenses/
+    tty: true
+    build:
+      context: .
+      dockerfile: build/Dockerfile
+    ports:
+      - 3000:3000
+  db:
+    image: mariadb
+    container_name: db
+    environment:
+      - MYSQL_ROOT_PASSWORD=g-liu-pass
+      - MYSQL_DATABASE=eps_info
+      - MYSQL_USER=eps_g_liu
+      - MYSQL_PASSWORD=v4wedsavhoqwd
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d/
+    ports:
+      - 3306:3306
