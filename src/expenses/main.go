@@ -11,6 +11,6 @@ func main() {
 	router := gin.Default()
 	sqlCon.DBOpen()
 
-	router.GET("/user", user.GetUserInfo("success"))
+	router.GET("/user", user.GetUserInfo())
 	router.Run(":3000")
 }
